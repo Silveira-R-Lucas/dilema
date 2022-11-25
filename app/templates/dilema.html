@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Dilema</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</head>
+<body id="form-page">
+
+    <div id="readroot" style="display: none">
+        <button class="minus-btn" onclick="this.parentNode.parentNode.removeChild(this.parentNode);"><svg width="36" height="36" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"><path d="m12.002 2.005c5.518 0 9.998 4.48 9.998 9.997 0 5.518-4.48 9.998-9.998 9.998-5.517 0-9.997-4.48-9.997-9.998 0-5.517 4.48-9.997 9.997-9.997zm0 1.5c-4.69 0-8.497 3.807-8.497 8.497s3.807 8.498 8.497 8.498 8.498-3.808 8.498-8.498-3.808-8.497-8.498-8.497zm0 7.425 2.717-2.718c.146-.146.339-.219.531-.219.404 0 .75.325.75.75 0 .193-.073.384-.219.531l-2.717 2.717 2.727 2.728c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.384-.073-.53-.219l-2.729-2.728-2.728 2.728c-.146.146-.338.219-.53.219-.401 0-.751-.323-.751-.75 0-.192.073-.384.22-.531l2.728-2.728-2.722-2.722c-.146-.147-.219-.338-.219-.531 0-.425.346-.749.75-.749.192 0 .385.073.531.219z" fill-rule="nonzero"/></svg></button>
+        <input name="option" value="" required/>
+    </div>
+        
+    <div class="wrapper">
+        <fieldset class="field-add">
+            <h1>Adicione aqui o seus Dilemas :</h1>
+            <form id="form" method="POST" action="/sorteio">
+                <input name="option" value="" required/>
+                <br>
+                <button id="submit" class="btn btn-primary btn-lg active"type="submit">Sortear</button>
+            </form>
+            <button onclick="add_field()" id="moreFields"><svg width="36" height="36" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"><path d="M11.5 0c6.347 0 11.5 5.153 11.5 11.5s-5.153 11.5-11.5 11.5-11.5-5.153-11.5-11.5 5.153-11.5 11.5-11.5zm0 1c5.795 0 10.5 4.705 10.5 10.5s-4.705 10.5-10.5 10.5-10.5-4.705-10.5-10.5 4.705-10.5 10.5-10.5zm.5 10h6v1h-6v6h-1v-6h-6v-1h6v-6h1v6z"/></svg></button>
+        </fieldset>
+    </div> 
+
+    <video autoplay muted loop id="myVideo">
+        <source src="../static/video/coelin.mp4" type="video/mp4">
+    </video>
+
+        <script>
+            var counter = 0;
+            function add_field(){
+                counter++;
+                var newFields = document.getElementById('readroot').cloneNode(true);
+                newFields.style.display = 'flex';
+                var newField = newFields.childNodes;
+                for (var i=0;i<newField.length;i++) {
+                    var theName = newField[i].name
+                    if (theName)
+                        newField[i].name = theName + counter;
+                }
+                var insertHere = document.getElementById('writeroot');
+                var x = document.getElementById("form");
+                var pos = x.childElementCount;
+                x.insertBefore(newFields, x.childNodes[pos]);
+            }
+        </script>
+    </body>
+</html>
